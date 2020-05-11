@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calc-Log</title>
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.6/assets/css/emojione.min.css"/>
+    <link rel="stylesheet" href="/style.css"> -->
+
+    <script> 
+        //function that display value 
+        function dis(val) 
+        { 
+            document.getElementById("result").value+=val 
+        } 
+        //function that evaluates the digit and return result 
+        function solve() 
+        { 
+            let x = document.getElementById("result").value 
+            let y = eval(x) 
+            // let z = x + '=' + y
+            document.getElementById("result").value = y
+        } 
+        //function that clear the display 
+        function clr() 
+        { 
+            document.getElementById("result").value = "" 
+        } 
+    </script> 
+
+    <style> 
+        input[type="button"] { 
+        background-color:rgb(63, 110, 131); 
+        color: black; 
+        border: solid black 2px; 
+        width:100%;
+        height:100%;
+        } 
+        table {
+            width: 300px;
+            height: 300px;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top: 50px;
+        }
+
+        input[type="text"] { 
+        background-color:white; 
+        /* border: solid black 2px;  */
+        width:97%; 
+        height:100%;
+        } 
+
+        .card-content {
+        background-color: rgb(70, 164, 187);
+        width: 300px;
+        border: 2px solid rgb(7, 55, 58);
+        padding: 20px;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top: 50px;
+        height:145px;
+        overflow-y: scroll;
+        }
+
+        .aspNetHidden {
+        display: none;
+        }
+    </style> 
+
+</head>
+
+<body>
+<!-- <header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo right">Simple Chat</a>
+        </div>
+    </nav>
+</header> -->
+
+
+<main id="app">
+   
+
+    <!-- <div class="row">
+        <div class="input-field col s8">
+            <input type="text" v-model="newMsg" @keyup.enter="send">
+
+        <div class="input-field col s1">
+            <button class="waves-effect waves-light btn" v-on:click= "newMsg += 'a'" @click="send">
+                =
+            </button>
+        </div>
+
+    </div> -->
+
+    <!-- <div class="row"> -->
+        <table border="1"> 
+            <tr> 
+               <td colspan="3"><input type="text" name= "result" id="result"/></td> 
+               <td><input type="button" value="c" onclick="clr()"/> </td> 
+            </tr> 
+            <tr> 
+               <!-- create button and assign value to each button -->
+               <!-- dis("1") will call function dis to display value -->
+               <td><input type="button" value="1" onclick="dis('1')"/> </td> 
+               <td><input type="button" value="2" onclick="dis('2')"/> </td> 
+               <td><input type="button" value="3" onclick="dis('3')"/> </td> 
+               <td><input type="button" value="/" onclick="dis('/')"/> </td> 
+            </tr> 
+            <tr> 
+               <td><input type="button" value="4" onclick="dis('4')"/> </td> 
+               <td><input type="button" value="5" onclick="dis('5')"/> </td> 
+               <td><input type="button" value="6" onclick="dis('6')"/> </td> 
+               <td><input type="button" value="-" onclick="dis('-')"/> </td> 
+            </tr> 
+            <tr> 
+               <td><input type="button" value="7" onclick="dis('7')"/> </td> 
+               <td><input type="button" value="8" onclick="dis('8')"/> </td> 
+               <td><input type="button" value="9" onclick="dis('9')"/> </td> 
+               <td><input type="button" value="+" onclick="dis('+')"/> </td> 
+            </tr> 
+            <tr> 
+               <td><input type="button" value="." onclick="dis('.')"/> </td> 
+               <td><input type="button" value="0" onclick="dis('0')"/> </td> 
+               <!-- <td><input type="button" value="=" v-on:click= "setMessage(result.value); send();solve();"/> </td> -->
+               <td><input type="button" value="=" v-on:click="send()"/> </td>
+               <td><input type="button" value="*" onclick="dis('*')"/> </td> 
+            </tr> 
+         </table>
+    <!-- </div> -->
+
+    <div class="row">
+        <div class="col s8">
+            <div class="card horizontal">
+                <div id="chat-messages" class="card-content" v-html="chatContent">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+<!-- <footer class="page-footer">
+</footer> -->
+<script src="https://unpkg.com/vue@2.1.3/dist/vue.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/emojione/2.2.6/lib/js/emojione.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
