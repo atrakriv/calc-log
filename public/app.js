@@ -3,7 +3,7 @@ new Vue({
 
     data: {
         ws: null, // Our websocket
-        newMsg: '99', // Holds new messages to be sent to the server
+        newMsg: '', // Holds new messages to be sent to the server
         chatContent: '', // A running list of chat messages displayed on the screen
         username: "atak", // Our username
     },
@@ -13,18 +13,19 @@ new Vue({
         this.ws = new WebSocket('ws://' + window.location.host + '/ws');
         this.ws.addEventListener('message', function(e) {
             var msg = JSON.parse(e.data);
-            self.chatContent += '</div>'
-                    //+ '<img src="' + self.gravatarURL(msg.email) + '">' // Avatar
-                    //+ msg.username
-                + '</div>'
-                //+ emojione.toImage(msg.message) // Parse emojis
-                + msg.message
-                //+ '='
-                //+ msg.username
-                + '<br/>'; 
+            // self.chatContent += '</div>'
+            //         //+ '<img src="' + self.gravatarURL(msg.email) + '">' // Avatar
+            //         //+ msg.username
+            //     + '</div>'
+            //     //+ emojione.toImage(msg.message) // Parse emojis
+            //     + msg.message
+            //     //+ '='
+            //     + msg.username
+            //     + '<br/>'; 
+            self.chatContent = msg.message;
 
             var element = document.getElementById('chat-messages');
-            element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
+            //element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
         });
     },
 

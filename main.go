@@ -5,11 +5,16 @@ import (
 	"net/http"
 	"os"
 
+	//"strconv"
+	"bytes"
+
 	"github.com/gorilla/websocket"
 )
 
 var clients = make(map[*websocket.Conn]bool) // connected clients
 var broadcast = make(chan Message)           // broadcast channel
+var cnt = 0
+var msgs []string
 
 // Configure the upgrader
 var upgrader = websocket.Upgrader{
@@ -30,6 +35,8 @@ func getPort() string {
 	if p != "" {
 		return ":" + p
 	}
+	// Start the server on localhost port 8080 and log any errors
+	log.Println("http server started on :8080")
 	return ":8080"
 }
 
@@ -44,8 +51,6 @@ func main() {
 	// Start listening for incoming chat messages
 	go handleMessages()
 
-	// Start the server on localhost port 8080 and log any errors
-	log.Println("http server started on :8080")
 	err := http.ListenAndServe(getPort(), nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
@@ -74,6 +79,24 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 		// Send the newly received message to the broadcast channel
+
+		if len(msgs) == 10 {
+			msgs = msgs[1:10]
+		}
+		msgs = append(msgs, msg.Message)
+
+		var s bytes.Buffer
+		for i := 0; i < len(msgs); i++ {
+			s.WriteString("</div>")
+			s.WriteString("</div>")
+			s.WriteString(msgs[i])
+			s.WriteString("<br/>")
+		}
+
+		msg.Message = s.String()
+		//msg += " : "
+		//msg.Username = strconv.Itoa(cnt)
+		//msg += strconv.Itoa(cnt)
 		broadcast <- msg
 	}
 }

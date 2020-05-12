@@ -1,10 +1,10 @@
 module github.com/calc-log/calc-log-demo
 
+go 1.14
+
 // +heroku goVersion go1.14.2
 
 // +heroku get github.com/gorilla/websocket
-
-
 
 require (
 	github.com/gomodule/redigo v2.0.0+incompatible
