@@ -3,8 +3,8 @@ This repo contains a calculator website that logs calculations as they happen an
 
 To execute:
 
-go get github.com/gorilla/websocket
+* go get github.com/gorilla/websocket
 
-go run main.go
+* go run main.go
 
-open a web browser and navigate to http://localhost:8080
+* open a web browser and navigate to http://localhost:8080
